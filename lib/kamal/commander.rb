@@ -163,7 +163,10 @@ class Kamal::Commander
         
           ssh_options[:keys] = config.sshkit.keys if config.sshkit.keys
           ssh_options[:key_data] = config.sshkit.key_data if config.sshkit.key_data
-        
+          
+          pp ssh_options
+          pp config.ssh.options
+
           config.ssh.options.merge!(ssh_options)
         end
 
