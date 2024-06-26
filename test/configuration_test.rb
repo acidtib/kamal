@@ -264,7 +264,7 @@ class ConfigurationTest < ActiveSupport::TestCase
         repository: "dhh/app",
         absolute_image: "dhh/app:missing",
         service_with_version: "app-missing",
-        ssh_options: { user: "root", port: 22, log_level: :fatal, keepalive: true, keepalive_interval: 30 },
+        ssh_options: { user: "root", port: 22, log_level: :fatal, keepalive: true, keepalive_interval: 30, keys_only: true },
         sshkit: {},
         volume_args: [ "--volume", "/local/path:/container/path" ],
         builder: {},
