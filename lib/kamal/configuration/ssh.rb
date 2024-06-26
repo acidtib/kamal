@@ -27,7 +27,7 @@ class Kamal::Configuration::Ssh
   end
 
   def options
-    { user: user, port: port, proxy: proxy, logger: logger, keepalive: true, keepalive_interval: 30 }.compact
+    { user: user, port: port, proxy: proxy, logger: logger, keepalive: true, keepalive_interval: 30, keys_only: true }.compact
   end
 
   def to_h
