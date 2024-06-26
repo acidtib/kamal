@@ -17,15 +17,15 @@ class Kamal::Configuration::Sshkit
   end
 
   def keys_only
-    ssh_config.fetch("keys_only", false)
+    sshkit_config.fetch("keys_only", false)
   end
   
   def keys
-    ssh_config["keys"]
+    sshkit_config["keys"]
   end
 
   def key_data
-    ssh_config["key_data"]
+    sshkit_config["key_data"]
   end
 
   def to_h
