@@ -48,3 +48,5 @@ ssh:
   forward_agent: true
 
   keys_only: false
+
+  key_data: [ "ssh_key_private" ]

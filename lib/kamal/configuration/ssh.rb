@@ -26,6 +26,10 @@ class Kamal::Configuration::Ssh
     ssh_config.fetch("forward_agent", true)
   end
 
+  def key_data
+    ssh_config.fetch("key_data", [])
+  end
+
   def proxy
     if (proxy = ssh_config["proxy"])
       Net::SSH::Proxy::Jump.new(proxy.include?("@") ? proxy : "root@#{proxy}")
@@ -35,7 +39,7 @@ class Kamal::Configuration::Ssh
   end
 
   def options
-    { user: user, port: port, proxy: proxy, logger: logger, keepalive: true, keepalive_interval: 30, keys_only: keys_only, forward_agent: forward_agent }.compact
+    { user: user, port: port, proxy: proxy, logger: logger, keepalive: true, keepalive_interval: 30, keys_only: keys_only, forward_agent: forward_agent, key_data: key_data }.compact
   end
 
   def to_h
