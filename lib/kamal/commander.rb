@@ -152,6 +152,8 @@ class Kamal::Commander
         # pp config.sshkit
         pp "-"*40
         sshkit.ssh_options = config.ssh.options
+
+        pp config.sshkit.keys_only
         
         if config.sshkit.keys_only
           sshkit.ssh_options[:keys_only] = config.sshkit.keys_only
