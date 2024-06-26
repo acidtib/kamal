@@ -149,9 +149,8 @@ class Kamal::Commander
       SSHKit::Backend::Netssh.configure do |sshkit|
         sshkit.max_concurrent_starts = config.sshkit.max_concurrent_starts
         pp "-"*40
-        pp config.ssh
+        pp config.sshkit
         pp "-"*40
-        pp config.ssh.options
         sshkit.ssh_options = config.ssh.options
       end
       SSHKit.config.command_map[:docker] = "docker" # No need to use /usr/bin/env, just clogs up the logs

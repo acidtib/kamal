@@ -16,16 +16,16 @@ class Kamal::Configuration::Sshkit
     sshkit_config.fetch("pool_idle_timeout", 900)
   end
 
-  def keys_only?
-    !!ssh_config.fetch("keys_only", false)
+  def keys_only
+    ssh_config.fetch("keys_only", false)
   end
   
   def keys
-    ssh_config.fetch("keys", []) if keys_only?
+    ssh_config.fetch("keys", [])
   end
 
   def key_data
-    ssh_config.fetch("key_data", []) if keys_only?
+    ssh_config.fetch("key_data", [])
   end
 
   def to_h
