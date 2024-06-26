@@ -44,3 +44,5 @@ ssh:
   # Defaults to `fatal`. Set this to debug if you are having
   # SSH connection issues.
   log_level: debug
+
+  keys_only: true
