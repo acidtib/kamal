@@ -18,6 +18,10 @@ class Kamal::Configuration::Ssh
     ssh_config.fetch("port", 22)
   end
 
+  def keys_only
+    ssh_config.fetch("keys_only", true)
+  end
+
   def proxy
     if (proxy = ssh_config["proxy"])
       Net::SSH::Proxy::Jump.new(proxy.include?("@") ? proxy : "root@#{proxy}")
@@ -27,7 +31,7 @@ class Kamal::Configuration::Ssh
   end
 
   def options
-    { user: user, port: port, proxy: proxy, logger: logger, keepalive: true, keepalive_interval: 30, keys_only: true }.compact
+    { user: user, port: port, proxy: proxy, logger: logger, keepalive: true, keepalive_interval: 30, keys_only: keys_only }.compact
   end
 
   def to_h
