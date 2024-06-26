@@ -19,7 +19,7 @@ class Kamal::Configuration::Ssh
   end
 
   def keys_only
-    ssh_config.fetch("keys_only", true)
+    ssh_config.fetch("keys_only", false)
   end
 
   def proxy

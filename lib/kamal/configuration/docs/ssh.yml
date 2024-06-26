@@ -45,4 +45,4 @@ ssh:
   # SSH connection issues.
   log_level: debug
 
-  keys_only: true
+  keys_only: false
