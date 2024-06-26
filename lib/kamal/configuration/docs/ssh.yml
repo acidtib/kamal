@@ -57,10 +57,10 @@ ssh:
   #
   # An array of file names of private keys to use for publickey
   # and hostbased authentication
-  keys: []
+  keys: [ "~/.ssh/id.pem" ]
 
   # Key Data
   #
   # An array of strings, with each element of the array being
   # a raw private key in PEM format.
-  key_data: []
+  key_data: [ "-----BEGIN OPENSSH PRIVATE KEY-----" ]
