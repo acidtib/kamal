@@ -155,6 +155,8 @@ class Kamal::Commander
       end
       SSHKit.config.command_map[:docker] = "docker" # No need to use /usr/bin/env, just clogs up the logs
       SSHKit.config.output_verbosity = verbosity
+
+      pp SSHKit::Backend::Netssh.configure
     end
 
     def specifics
