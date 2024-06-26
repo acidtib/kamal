@@ -156,7 +156,7 @@ class Kamal::Commander
         pp config.sshkit.keys_only
         
         if config.sshkit.keys_only
-          sshkit.ssh_options[:keys_only] = config.sshkit.keys_only
+          sshkit.ssh_options["keys_only"] = config.sshkit.keys_only
           sshkit.ssh_options[:keys] = config.sshkit.keys if config.sshkit.keys
           sshkit.ssh_options[:key_data] = config.sshkit.key_data if config.sshkit.key_data
         end
