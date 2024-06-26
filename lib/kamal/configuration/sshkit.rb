@@ -21,11 +21,11 @@ class Kamal::Configuration::Sshkit
   end
   
   def keys
-    ssh_config.fetch("keys", [])
+    ssh_config["keys"]
   end
 
   def key_data
-    ssh_config.fetch("key_data", [])
+    ssh_config["key_data"]
   end
 
   def to_h

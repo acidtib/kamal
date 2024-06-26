@@ -148,15 +148,21 @@ class Kamal::Commander
       SSHKit::Backend::Netssh.pool.idle_timeout = config.sshkit.pool_idle_timeout
       SSHKit::Backend::Netssh.configure do |sshkit|
         sshkit.max_concurrent_starts = config.sshkit.max_concurrent_starts
-        pp "-"*40
-        pp config.sshkit
+        # pp "-"*40
+        # pp config.sshkit
         pp "-"*40
         sshkit.ssh_options = config.ssh.options
+        
+        if config.sshkit.keys_only
+          sshkit.ssh_options[:keys_only] = config.sshkit.keys_only
+          sshkit.ssh_options[:keys] = config.sshkit.keys if config.sshkit.keys
+          sshkit.ssh_options[:key_data] = config.sshkit.key_data if config.sshkit.key_data
+        end
+
+        pp sshkit.ssh_options
       end
       SSHKit.config.command_map[:docker] = "docker" # No need to use /usr/bin/env, just clogs up the logs
       SSHKit.config.output_verbosity = verbosity
-
-      pp SSHKit::Backend::Netssh.configure.ssh_options
     end
 
     def specifics
