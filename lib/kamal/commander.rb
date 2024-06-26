@@ -151,28 +151,8 @@ class Kamal::Commander
         # pp "-"*40
         # pp config.sshkit
         pp "-"*40
-        
-
-        pp sshkit.ssh_options
-        pp config.sshkit.keys_only
-        
-        if config.sshkit.keys_only
-          ssh_options = {
-            :keys_only => config.sshkit.keys_only
-          }
-        
-          ssh_options[:keys] = config.sshkit.keys if config.sshkit.keys
-          ssh_options[:key_data] = config.sshkit.key_data if config.sshkit.key_data
-          
-          pp ssh_options
-          pp config.ssh.options
-
-          config.ssh.options.merge!(ssh_options)
-        end
-
         sshkit.ssh_options = config.ssh.options
         
-
         pp sshkit.ssh_options
       end
       SSHKit.config.command_map[:docker] = "docker" # No need to use /usr/bin/env, just clogs up the logs
