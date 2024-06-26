@@ -8,10 +8,6 @@ class Kamal::Configuration::Validator
   end
 
   def validate!
-    pp "config"
-    pp config
-    pp "-"*40
-    pp example
     validate_against_example! config, example
   end
 

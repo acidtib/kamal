@@ -150,6 +150,7 @@ class Kamal::Commander
         sshkit.max_concurrent_starts = config.sshkit.max_concurrent_starts
         pp "-"*40
         pp config
+        pp "-"*40
         sshkit.ssh_options = config.ssh.options
       end
       SSHKit.config.command_map[:docker] = "docker" # No need to use /usr/bin/env, just clogs up the logs
