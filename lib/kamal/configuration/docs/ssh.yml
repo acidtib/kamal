@@ -45,4 +45,6 @@ ssh:
   # SSH connection issues.
   log_level: debug
 
+  forward_agent: false
+  
   keys_only: false
