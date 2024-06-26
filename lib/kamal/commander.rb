@@ -149,7 +149,7 @@ class Kamal::Commander
       SSHKit::Backend::Netssh.configure do |sshkit|
         sshkit.max_concurrent_starts = config.sshkit.max_concurrent_starts
         pp "-"*40
-        pp config
+        pp config.ssh
         pp "-"*40
         sshkit.ssh_options = config.ssh.options
       end
