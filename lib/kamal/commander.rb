@@ -151,6 +151,7 @@ class Kamal::Commander
         pp "-"*40
         pp config.ssh
         pp "-"*40
+        pp config.ssh.options
         sshkit.ssh_options = config.ssh.options
       end
       SSHKit.config.command_map[:docker] = "docker" # No need to use /usr/bin/env, just clogs up the logs

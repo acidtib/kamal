@@ -23,7 +23,7 @@ class Kamal::Configuration::Ssh
   end
 
   def forward_agent
-    ssh_config.fetch("forward_agent", false)
+    ssh_config.fetch("forward_agent", true)
   end
 
   def proxy
