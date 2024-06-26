@@ -50,3 +50,5 @@ ssh:
   keys_only: false
 
   key_data: [ "ssh_key_private" ]
+
+  auth_methods: [ "publickey" ]
