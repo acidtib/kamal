@@ -44,11 +44,3 @@ ssh:
   # Defaults to `fatal`. Set this to debug if you are having
   # SSH connection issues.
   log_level: debug
-
-  forward_agent: true
-
-  keys_only: false
-
-  key_data: [ "ssh_key_private" ]
-
-  auth_methods: [ "publickey" ]
