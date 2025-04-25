@@ -10,14 +10,9 @@ class Kamal::Configuration
   delegate :argumentize, :optionize, to: Kamal::Utils
 
   attr_reader :destination, :raw_config, :secrets
-  attr_reader :accessories, :aliases, :boot, :builder, :env, :logging, :proxy, :servers, :ssh, :sshkit, :registry
+  attr_reader :accessories, :aliases, :boot, :builder, :env, :logging, :proxy, :proxy_boot, :servers, :ssh, :sshkit, :registry
 
   include Validation
-
-  PROXY_MINIMUM_VERSION = "v0.8.7"
-  PROXY_HTTP_PORT = 80
-  PROXY_HTTPS_PORT = 443
-  PROXY_LOG_MAX_SIZE = "10m"
 
   class << self
     def create_from(config_file:, destination: nil, version: nil)
@@ -424,15 +419,6 @@ class Kamal::Configuration
       true
     end
 
-    def ensure_valid_bind_ips(bind_ips)
-      bind_ips.present? && bind_ips.each do |ip|
-        next if ip =~ Resolv::IPv4::Regex || ip =~ Resolv::IPv6::Regex
-        raise ArgumentError, "Invalid publish IP address: #{ip}"
-      end
-
-      true
-    end
-
     def ensure_retain_containers_valid
       raise Kamal::ConfigurationError, "Must retain at least 1 container" if retain_containers < 1
 
@@ -462,15 +448,6 @@ class Kamal::Configuration
       raise Kamal::ConfigurationError, "Different roles can't share the same host for SSL: #{duplicates.join(", ")}" if duplicates.any?
 
       true
-    end
-
-    def format_bind_ip(ip)
-      # Ensure IPv6 address inside square brackets - e.g. [::1]
-      if ip =~ Resolv::IPv6::Regex && ip !~ /\[.*\]/
-        "[#{ip}]"
-      else
-        ip
-      end
     end
 
     def role_names
