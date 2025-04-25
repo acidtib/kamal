@@ -1,13 +1,13 @@
 class Kamal::Cli::App::SslCertificates
   attr_reader :host, :role, :sshkit
   delegate :execute, :info, to: :sshkit
-  
+
   def initialize(host, role, sshkit)
     @host = host
     @role = role
     @sshkit = sshkit
   end
-  
+
   def run
     if role.running_proxy? && role.proxy.custom_ssl_certificate?
       info "Writing SSL certificates for #{role.name} on #{host}"
@@ -21,7 +21,7 @@ class Kamal::Cli::App::SslCertificates
       execute *app.set_certificate_permissions
     end
   end
-  
+
   private
     def app
       @app ||= KAMAL.app(role: role, host: host)
