@@ -68,7 +68,7 @@ class Kamal::Configuration
     @env = Env.new(config: @raw_config.env || {}, secrets: secrets)
 
     @logging = Logging.new(logging_config: @raw_config.logging)
-    @proxy = Proxy.new(config: self, proxy_config: @raw_config.key?(:proxy) ? @raw_config.proxy : {})
+    @proxy = Proxy.new(config: self, proxy_config: @raw_config.key?(:proxy) ? @raw_config.proxy : {}, secrets: secrets)
     @ssh = Ssh.new(config: self)
     @sshkit = Sshkit.new(config: self)
 
@@ -344,6 +344,14 @@ class Kamal::Configuration
 
   def proxy_error_pages_container_directory
     File.join proxy_app_container_directory, "error_pages"
+  end
+
+  def proxy_tls_directory
+    File.join proxy_app_directory, "tls"
+  end
+
+  def proxy_tls_container_directory
+    File.join proxy_app_container_directory, "tls"
   end
 
   def to_h

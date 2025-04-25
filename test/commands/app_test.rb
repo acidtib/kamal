@@ -143,6 +143,16 @@ class CommandsAppTest < ActiveSupport::TestCase
       new_command.deploy(target: "172.1.0.2").join(" ")
   end
 
+  test "deploy with custom SSL certificate" do
+    with_test_secrets("secrets" => "CERT_PEM=certificate\nKEY_PEM=private_key") do
+      @config[:proxy] = { "ssl" => true, "host" => "example.com", "certificate_pem" => "CERT_PEM", "private_key_pem" => "KEY_PEM" }
+
+      assert_equal \
+        "docker exec kamal-proxy kamal-proxy deploy app-web --target=\"172.1.0.2:80\" --host=\"example.com\" --tls --tls-certificate-path=\"/home/kamal-proxy/.apps-config/app/tls/cert.pem\" --tls-private-key-path=\"/home/kamal-proxy/.apps-config/app/tls/key.pem\" --deploy-timeout=\"30s\" --drain-timeout=\"30s\" --buffer-requests --buffer-responses --log-request-header=\"Cache-Control\" --log-request-header=\"Last-Modified\" --log-request-header=\"User-Agent\"",
+        new_command.deploy(target: "172.1.0.2").join(" ")
+    end
+  end
+
   test "remove" do
     assert_equal \
       "docker exec kamal-proxy kamal-proxy remove app-web",
@@ -519,6 +529,12 @@ class CommandsAppTest < ActiveSupport::TestCase
     assert_equal \
       "rm -r .kamal/proxy/apps-config/app",
       new_command.remove_proxy_app_directory.join(" ")
+  end
+
+  test "set_certificate_permissions" do
+    assert_equal \
+      "docker exec --user root kamal-proxy chown -R kamal-proxy:kamal-proxy /home/kamal-proxy/.apps-config/app/tls",
+      new_command.set_certificate_permissions.join(" ")
   end
 
   private
